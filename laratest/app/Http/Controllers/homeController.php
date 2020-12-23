@@ -4,34 +4,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request; // using the REQUEST library
 use App\Http\Requests\studentRequest;// form validation using requests
 use Validator;
-use App\User;// accessing model for user table 
+use App\Employee;// accessing model for user table 
 
 class homeController extends Controller
 {
 
     public function index(Request $req){
 
-    /*	$user = ['name'=> 'alamin', 'id'=>12];
-    	return view('home.index', $user);*/
-
-    	/*
-    	$name = 'alamin';
-    	$id = 33;
-    	$cgpa = 4;
-    	return view('home.index', compact('name', 'id', 'cgpa'));*/
-
-    /*	return view('home.index')
-    			->with('name', 'alamin')
-    			->with('id', '66');*/
-
-    	/*return view('home.index')
-    			->withName('alamin')
-    			->withId('66');*/
-
-    	/*$v = view('home.index');
-    	$v->withName('alamin');
-    	$v->withId('12');
-    	return $v;*/
 
         return view('home.index', ['username'=> $req->session()->get('username')]);
     	
@@ -40,13 +19,13 @@ class homeController extends Controller
     public function stdlist(){
     	//$students = $this->getStudentlist();
 
-        $students = User::all();
+        $students = Employee::all();
     	return view('home.stdlist')->with('students', $students);
     }
 
 	public function show($id){
     	
-        $std = User::find($id);
+        $std = Employee::find($id);
         return view('home.show', $std);
     }
 
@@ -55,86 +34,55 @@ class homeController extends Controller
     	return view('home.create');
     }
 
-    public function store(studentRequest $req){             // validation done here 
+    public function store(Request $req){   //post create          // validation done here 
         
-       /* $validation = Validator::make($req->all(), [
-            'name' => 'required|min:3',
-            'email'=> 'required',
-            'cgpa' => 'required'
-        ]);
-
-        if($validation->fails()){
-            return redirect()
-                    ->route('home.create')
-                    ->with('errors', $validation->errors())
-                    ->withInput();
-
-            return back()
-                    ->with('errors', $validation->errors())
-                    ->withInput();
-        }*/
+      
+        // $req->validate([
+        //     'name' => 'required|min:3',
+        //     'username'=> 'required',
+        //     'password' => 'required|min:3',
+        //     'company'=> 'required',
+        //     'contact'=> 'required'
+        // ])->validate();
 
 
-       /* $this->validate($req, [
-            'name' => 'required|min:3',
-            'email'=> 'required',
-            'cgpa' => 'required'
-        ])->validate();*/
+          
+                $user = new Employee();
 
-
-        /*$req->validate([
-            'name' => 'required|min:3',
-            'email'=> 'required',
-            'cgpa' => 'required'
-        ])->validate();*/
-
-        if($req->hasFile('myimg')){
-            $file = $req->file('myimg');
-
-            //echo "File name:".$file->getClientOriginalName()."<br>";
-            //echo "File Ext:".$file->getClientOriginalExtension()."<br>";
-            //echo "File Size:".$file->getSize()."<br>";
-
-            if($file->move('upload', $file->getClientOriginalName())){
-               
-                $user = new User();
-
+                $user->employer_name   = $req->name;
+               $user->company         = $req->company;
+                $user->contact_number  = $req->contact;
                 $user->username     = $req->username;
                 $user->password     = $req->password;
-                $user->type         = $req->type;
-              //  $user->name         = $req->name;
-               // $user->cgpa         = $req->cgpa;
-              //  $user->dept         = $req->dept;
-              //  $user->profile_img  = $file->getClientOriginalName();
-
+              
                 if($user->save()){               // inserts in to the database using the save() method
                     return redirect()->route('home.stdlist');
                 }
 
-            }else{
+            else{
                 echo "error";
             }
-        }
+        
 
     	//return redirect()->route('home.stdlist');
     }
 
     public function edit($id){
     	
-        $std = User::find($id);         // used to find the id and return the row with all values
+        $std = Employee::find($id);         // used to find the id and return the row with all values
     	return view('home.edit', $std);
     }
 
     public function update($id, Request $req){
     	   
-        $user = User::find($id);
+        $user = Employee::find($id);
 
-        $user->username = $req->username;
-        $user->password = $req->password;
-        $user->type     = $req->type;
-      //  $user->name     = $req->name;
-       // $user->cgpa     = $req->cgpa;
-       // $user->dept     = $req->dept;
+        $user->employer_name   = $req->name;
+        $user->company         = $req->company;
+        $user->contact_number  = $req->contact;
+        $user->username     = $req->username;
+        $user->password     = $req->password;
+     
 
         $user->save();
 
@@ -143,7 +91,7 @@ class homeController extends Controller
 
     public function delete($id){
         
-        $user = User::find($id);
+        $user = Employee::find($id);
         $user->delete();
     	return redirect()->route('home.stdlist');
     }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- @include('home.header') -->
+
 <html>
 <head>
 	<title>Edit Page</title>
@@ -16,8 +16,20 @@
 			<fieldset>
 				<legend>Edit User</legend>
 			<table border="1">
+
 				<tr>
-					<td>Username</td>
+					<td>Employer Name</td>
+					<td><input type="text" name="name" value="{{$employer_name}}"></td>
+				</tr>
+				<tr>
+					<td>Company</td>
+					<td><input type="text" name="company" value="{{$company}}"></td>
+				</tr>
+				<tr>
+					<td>Contact no</td>
+					<td><input type="text" name="contact" value="{{$contact_number}}"></td>
+				</tr>	
+				<td>Username</td>
 					<td><input type="text" name="username" value="{{$username}}"></td>
 				</tr>
 				<tr>
@@ -36,10 +48,7 @@
 					<td>dept</td>
 					<td><input type="text" name="dept" value=""></td>
 				</tr>-->
-				<tr>
-					<td>type</td>
-					<td><input type="text" name="type" value="{{$type}}"></td>
-				</tr> 
+	
 				<tr>
 					<td></td>
 					<td><input type="submit" name="submit" value="Update"></td>

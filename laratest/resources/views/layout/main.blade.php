@@ -15,9 +15,9 @@
 		@yield('content')
 	</div>
 
-	<div id="footer">
+	<!-- <div id="footer">
 		copyright@2020
-	</div>
+	</div> -->
 
 </body>
 </html>

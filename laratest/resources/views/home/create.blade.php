@@ -15,7 +15,7 @@ Create New User
 
 			<input type="hidden" name="_token" value="{{csrf_token()}}">
 			<fieldset>
-				<legend>Create User</legend>
+				<legend>Create Employer</legend>
 			<table>
 				<tr>
 					<td>Username</td>
@@ -26,25 +26,25 @@ Create New User
 					<td><input type="password" name="password" value="{{old('password')}}"></td>
 				</tr>
 				<tr>
-					<td>Name</td>
+					<td>Employer Name</td>
 					<td><input type="text" name="name" value="{{old('name')}}"></td>
 				</tr>
 				<tr>
-					<td>Cgpa</td>
-					<td><input type="text" name="cgpa" value="{{old('cgpa')}}"></td>
+					<td>Company</td>
+					<td><input type="text" name="company" value="{{old('company')}}"></td>
 				</tr>
 				<tr>
-					<td>dept</td>
-					<td><input type="text" name="dept" value="{{old('dept')}}"></td>
+					<td>Contact no</td>
+					<td><input type="text" name="contact" value="{{old('contact')}}"></td>
 				</tr>
-				<tr>
+				<!-- <tr>
 					<td>type</td>
-					<td><input type="text" name="type" value="{{old('type')}}"></td>
+					<td><input type="text" name="type" value=></td>
 				</tr>
 				<tr>
 					<td>Photo</td>
 					<td><input type="file" name="myimg"></td>
-				</tr>
+				</tr> -->
 				<tr>
 					<td></td>
 					<td><input type="submit" name="submit" value="Submit"></td>

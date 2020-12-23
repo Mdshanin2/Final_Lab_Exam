@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- <!-- @include('home.header')  -->
+ 
 <html>
 <head>
 	<title>Student List</title>
@@ -12,9 +12,12 @@
 	<table border="1">
 		<tr>
 			<td>Id</td>
+			<td>Employer name</td>
+			<td>company</td>
+			<td>contact number</td>
 			<td>Username</td>
-			<td>Name</td>
-			<td>Dept</td>
+			<td>password</td>
+			
 			<td>Action</td>
 		</tr>
 
@@ -22,12 +25,14 @@
 
 			<tr>
 				<td>{{$students[$i]['id']}}</td>
+				<td>{{$students[$i]['employer_name']}}</td>
+				<td>{{$students[$i]['company']}}</td>
+				<td>{{$students[$i]['contact_number']}}</td>
 				<td>{{$students[$i]['username']}}</td>
 				<td>{{$students[$i]['password']}}</td>
-				<td>{{$students[$i]['type']}}</td>
+			
 				<td>
 					<a href="{{route('home.edit', $students[$i]['id'])}}">Edit </a> |
-					<a href="{{route('home.show', $students[$i]['id'])}}">Details </a> |
 					<a href="/delete/{{$students[$i]['id']}}">Delete </a> 
 				</td>
 			</tr>
