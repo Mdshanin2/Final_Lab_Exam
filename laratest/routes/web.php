@@ -43,6 +43,10 @@ Route::post('/jedit/{id}', 'empController@update');
 		Route::post('/edit/{id}', 'homeController@update');
 		Route::get('/delete/{id}', 'homeController@delete');
 		Route::post('/delete/{id}', 'homeController@destroy');
+//search work
+		Route::get('/live_search', 'LiveSearch@index');
+		Route::get('/live_search/action', 'LiveSearch@action')->name('live_search.action');
+		
 	//});
 	
 });
