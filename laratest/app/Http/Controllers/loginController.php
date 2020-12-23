@@ -36,7 +36,7 @@ class loginController extends Controller
             $req->session()->put('username', $req->username);
            // $req->session()->put('type', $req->username);
             
-    		return redirect('/home');
+    		return redirect('/emphome');
 
         }
         
